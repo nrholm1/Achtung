@@ -1,5 +1,6 @@
 package Networking;
 
+import Networking.Server.ConnectionListener;
 import Networking.Server.Server;
 import Networking.Utils.Payload;
 import Networking.Utils.PayloadBuilder;
@@ -19,8 +20,8 @@ public class TestDriver {
 
 
 
-        Server server = new Server(5050);
-        server.start();
+        ConnectionListener listener = new ConnectionListener(5050);
+        listener.start();
 
         Socket socketToServer = new Socket("localhost", 5050);
         ObjectOutputStream outStream = new ObjectOutputStream(socketToServer.getOutputStream());
@@ -32,7 +33,12 @@ public class TestDriver {
                 e.printStackTrace();
             }
             System.out.println("Sending object to server ...");
-            outStream.writeObject("test message #"+i);
+            payload = new PayloadBuilder()
+                    .withX(Math.random() * 69)
+                    .withY(Math.random() * 420)
+                    .withCurrInput((int) (Math.random() * 3))
+                    .create();
+            outStream.writeObject(payload);
         }
         System.exit(0);
     }

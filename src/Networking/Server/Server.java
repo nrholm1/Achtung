@@ -7,52 +7,27 @@ import java.net.Socket;
 
 // thread that manages one socket connection with a client
 public class Server extends Thread {
-    public int PORT;
-    private ServerSocket socket;
-    ObjectInputStream objIn;
-    ObjectOutputStream objOut;
+    private Socket socket;
+    ObjectInputStream inputStream;
 
-    public Server(int _port) throws IOException {
-        System.out.println("Starting Server");
-        PORT = _port;
-        socket = ServerSocketFactory.getDefault().createServerSocket(_port);
+
+    public Server(Socket _socket) throws IOException {
+        socket = _socket;
+        inputStream = new ObjectInputStream(socket.getInputStream());
     }
 
     @Override
-    public synchronized void start() {
+    public void run() {
         while (true) {
             try {
-                final Socket socketToClient = socket.accept();
-                ClientHandler clientHandler = new ClientHandler(socketToClient);
-                clientHandler.start();
+                Object o = inputStream.readObject();
+                System.out.println("Read object: " + o);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-        }
-    }
 
-    private class ClientHandler extends Thread {
-        private Socket socket;
-        ObjectInputStream inputStream;
-
-        public ClientHandler(Socket _socket) throws IOException {
-            socket = _socket;
-            inputStream = new ObjectInputStream(socket.getInputStream());
-        }
-
-        @Override
-        public void start() {
-            while (true) {
-                try {
-                    Object o = inputStream.readObject();
-                    System.out.println(o);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-            }
         }
     }
 }
