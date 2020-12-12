@@ -10,5 +10,6 @@ public class TestDriver {
                 .withY(420)
                 .withCurrInput(3)
                 .create();
+        System.out.println(payload);
     }
 }
