@@ -17,6 +17,7 @@ public class SocketListener extends Thread {
         System.out.println("Starting Server");
         PORT = _port;
         socket = ServerSocketFactory.getDefault().createServerSocket(_port);
+        System.out.println("Connected succesfully");
     }
 
     @Override
