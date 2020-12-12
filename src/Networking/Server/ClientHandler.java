@@ -9,11 +9,13 @@ import java.net.Socket;
 public class ClientHandler extends Thread {
     private Socket socket;
     ObjectInputStream inputStream;
+    ObjectOutputStream outSteam;
 
 
     public ClientHandler(Socket _socket) throws IOException {
         socket = _socket;
         inputStream = new ObjectInputStream(socket.getInputStream());
+        outSteam = new ObjectOutputStream(socket.getOutputStream());
     }
 
     @Override
