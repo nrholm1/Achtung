@@ -33,16 +33,23 @@ public class TestDriver {
             }
             System.out.println("Sending object to server ...");
 
-            HashMap<Integer, double[]> positions = new HashMap<>();
-            for(int x = 0; x < 3; x++)
-                positions.put((int)(Math.random() * 7), new double[] {Math.random() * 69, Math.random() * 420});
-
-            payload = new PayloadBuilder()
-                    .withPositions(positions)
-                    .withGameState((int) (Math.random() * 3))
-                    .create();
+            payload = createRandomPayload();
             outStream.writeObject(payload);
         }
         System.exit(0);
+    }
+
+    public static Payload createRandomPayload() {
+        return new PayloadBuilder()
+                .withPositions(createRandomPositions())
+                .withGameState((int) (Math.random() * 3))
+                .create();
+    }
+
+    public static HashMap<Integer,double[]> createRandomPositions() {
+        HashMap<Integer, double[]> positions = new HashMap<>();
+        for(int x = 0; x < 3; x++)
+            positions.put((int)(Math.random() * 7), new double[] {Math.random() * 69, Math.random() * 420});
+        return positions;
     }
 }
