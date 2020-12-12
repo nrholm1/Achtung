@@ -7,13 +7,13 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConnectionListener extends Thread {
+public class SocketListener extends Thread {
     public int PORT;
     private ServerSocket socket;
     ObjectInputStream objIn;
     ObjectOutputStream objOut;
 
-    public ConnectionListener(int _port) throws IOException {
+    public SocketListener(int _port) throws IOException {
         System.out.println("Starting Server");
         PORT = _port;
         socket = ServerSocketFactory.getDefault().createServerSocket(_port);
@@ -24,7 +24,7 @@ public class ConnectionListener extends Thread {
         while (true) {
             try {
                 final Socket socketToClient = socket.accept();
-                Server server = new Server(socketToClient);
+                ClientHandler server = new ClientHandler(socketToClient);
                 server.start();
             } catch (IOException e) {
                 e.printStackTrace();

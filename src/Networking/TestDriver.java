@@ -1,7 +1,6 @@
 package Networking;
 
-import Networking.Server.ConnectionListener;
-import Networking.Server.Server;
+import Networking.Server.SocketListener;
 import Networking.Utils.Payload;
 import Networking.Utils.PayloadBuilder;
 
@@ -20,7 +19,7 @@ public class TestDriver {
 
 
 
-        ConnectionListener listener = new ConnectionListener(5050);
+        SocketListener listener = new SocketListener(5050);
         listener.start();
 
         Socket socketToServer = new Socket("localhost", 5050);

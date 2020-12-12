@@ -6,12 +6,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 // thread that manages one socket connection with a client
-public class Server extends Thread {
+public class ClientHandler extends Thread {
     private Socket socket;
     ObjectInputStream inputStream;
 
 
-    public Server(Socket _socket) throws IOException {
+    public ClientHandler(Socket _socket) throws IOException {
         socket = _socket;
         inputStream = new ObjectInputStream(socket.getInputStream());
     }
