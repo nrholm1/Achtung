@@ -7,13 +7,13 @@ import Networking.Utils.PayloadBuilder;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class TestDriver {
     public static void main(String args[]) throws InterruptedException, IOException {
         Payload payload = new PayloadBuilder()
-                .withX(69)
-                .withY(420)
-                .withCurrInput(3)
+                .withGameState(0)
+                .withPosition(69, new double[] {420, 32})
                 .create();
         System.out.println(payload);
 
@@ -32,10 +32,14 @@ public class TestDriver {
                 e.printStackTrace();
             }
             System.out.println("Sending object to server ...");
+
+            HashMap<Integer, double[]> positions = new HashMap<>();
+            for(int x = 0; x < 3; x++)
+                positions.put((int)(Math.random() * 7), new double[] {Math.random() * 69, Math.random() * 420});
+
             payload = new PayloadBuilder()
-                    .withX(Math.random() * 69)
-                    .withY(Math.random() * 420)
-                    .withCurrInput((int) (Math.random() * 3))
+                    .withPositions(positions)
+                    .withGameState((int) (Math.random() * 3))
                     .create();
             outStream.writeObject(payload);
         }

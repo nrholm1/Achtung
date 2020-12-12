@@ -1,37 +1,41 @@
 package Networking.Utils;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Payload implements Serializable {
-    // position (x,y)
-    // currInput (left, right, null)
+    // positions = {playerId: [x,y]}
+    // gameState = 0, 1, 2 (in progress, game over, you won)
 
-    double x;
-    double y;
-    int currInput; // 0,1,2 -> (null, left, right)
+    HashMap<Integer, double[]> positions;
+    int gameState;
 
-    public void setX(double _x) {
-        x = _x;
+    public void setPositions(HashMap<Integer, double[]> _positions) {
+        positions = _positions;
+    }
+    public void addPosition(int id, double[] coord) {
+        positions.put(id, coord);
     }
 
-    public void setY(double _y) {
-        y = _y;
-    }
-
-    public void setCurrInput(int _currInput) {
-        currInput = _currInput;
+    public void setGameState(int _gameState) {
+        gameState = _gameState;
     }
 
     public String toString() {
-        String inputDir = "null";
-        if (currInput != 0)
-            inputDir = currInput == 1 ? "left" : "right";
-        return "(" + x + ", " + y + ") - " + inputDir;
+        StringBuilder sb = new StringBuilder();
+        String inputState = "in progress";
+        if (gameState != 0)
+            inputState = gameState == 1 ? "game over" : "you won";
+        sb.append(inputState);
+
+        for(var v : positions.keySet())
+            sb.append("\n(" + (int)positions.get(v)[0] + ", " + (int)positions.get(v)[1] + ")");
+
+        return sb.append("\n").toString();
     }
 
     public Payload() {
-        x = 0;
-        y = 0;
-        currInput = 0;
+        positions = new HashMap<Integer, double[]>();
+        gameState = 0;
     }
 }

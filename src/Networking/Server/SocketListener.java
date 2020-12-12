@@ -24,8 +24,8 @@ public class SocketListener extends Thread {
         while (true) {
             try {
                 final Socket socketToClient = socket.accept();
-                ClientHandler server = new ClientHandler(socketToClient);
-                server.start();
+                ClientHandler clientHandler = new ClientHandler(socketToClient);
+                clientHandler.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

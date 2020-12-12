@@ -1,5 +1,7 @@
 package Networking.Utils;
 
+import java.util.HashMap;
+
 public class PayloadBuilder {
     Payload payload;
 
@@ -11,18 +13,18 @@ public class PayloadBuilder {
         return payload;
     }
 
-    public PayloadBuilder withX(double _x) {
-        payload.setX(_x);
+    public PayloadBuilder withPositions(HashMap<Integer, double[]> positions) {
+        payload.setPositions(positions);
         return this;
     }
 
-    public PayloadBuilder withY(double _y) {
-        payload.setY(_y);
+    public PayloadBuilder withPosition(int id, double[] position) {
+        payload.addPosition(id, position);
         return this;
     }
 
-    public PayloadBuilder withCurrInput(int _currInput) {
-        payload.setCurrInput(_currInput);
+    public PayloadBuilder withGameState(int _gameState) {
+        payload.setGameState(_gameState);
         return this;
     }
 }
