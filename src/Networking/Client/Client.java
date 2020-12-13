@@ -28,7 +28,7 @@ public class Client extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        while(true) {
             try {
                 // temp
                 currentInput = (int) (Math.random() * 3);
@@ -36,6 +36,9 @@ public class Client extends Thread {
                 writeCurrentInput(currentInput);
                 Object o = readPayload();
                 System.out.println("CLIENT | Read object: " + o);
+
+                // temp
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

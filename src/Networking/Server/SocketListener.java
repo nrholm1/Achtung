@@ -10,14 +10,12 @@ import java.net.Socket;
 public class SocketListener extends Thread {
     public int PORT;
     private ServerSocket socket;
-    ObjectInputStream objIn;
-    ObjectOutputStream objOut;
 
     public SocketListener(int _port) throws IOException {
         System.out.println("Starting Server");
         PORT = _port;
         socket = ServerSocketFactory.getDefault().createServerSocket(_port);
-        System.out.println("Connected succesfully");
+        System.out.println("Socket on {PORT " + _port + "} created succesfully");
     }
 
     @Override
@@ -27,8 +25,11 @@ public class SocketListener extends Thread {
                 final Socket socketToClient = socket.accept();
                 ClientHandler clientHandler = new ClientHandler(socketToClient);
                 clientHandler.start();
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                System.out.println("Killing listener thread");
             }
         }
     }

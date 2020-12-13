@@ -36,8 +36,6 @@ public class TestDriver {
     }
 
     public static void testServer() throws IOException {
-        Payload payload;
-
         SocketListener listener = new SocketListener(5050);
         listener.start();
 
