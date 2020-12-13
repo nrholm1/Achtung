@@ -1,6 +1,6 @@
 package Networking.Server;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CommonRuntime {
     // interface with StateRenderer
@@ -11,13 +11,21 @@ public class CommonRuntime {
     // timeout after a certain interval after last new connection and start game
 
     // store connections to client and interface with I/O data streams
-    ArrayList<ClientHandler> clientHandlers;
+    // <port no., ClientHandler>
+    HashMap<Integer, ClientHandler> clientHandlers;
 
     public CommonRuntime() {
-        clientHandlers = new ArrayList<ClientHandler>();
+        clientHandlers = new HashMap<Integer, ClientHandler>();
 
         while(true) {
 
         }
+    }
+
+    public void addClientHandler(int port, ClientHandler clientHandler) {
+        if (clientHandlers != null)
+            clientHandlers.put(port, clientHandler);
+        else
+            System.out.println("ERROR: clientHandlers not initialized yet");
     }
 }
