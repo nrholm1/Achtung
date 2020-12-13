@@ -14,6 +14,8 @@ public class ClientHandler extends Thread {
     ObjectInputStream inputStream;
     ObjectOutputStream outStream;
 
+    // runtime context
+    CommonRuntime runtime;
 
     public ClientHandler(Socket _socket) throws IOException {
         socket = _socket;
@@ -42,5 +44,9 @@ public class ClientHandler extends Thread {
             }
 
         }
+    }
+
+    public void addRuntime(CommonRuntime _runtime) {
+        runtime = _runtime;
     }
 }

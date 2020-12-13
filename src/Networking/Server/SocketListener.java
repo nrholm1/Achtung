@@ -32,9 +32,10 @@ public class SocketListener extends Thread {
                 ClientHandler clientHandler = new ClientHandler(socketToClient);
                 clientHandler.start();
 
-                if (runtime != null)
+                if (runtime != null) {
                     runtime.addClientHandler(PORT, clientHandler);
-
+                    clientHandler.addRuntime(runtime);
+                }
                 break;
             } catch (IOException e) {
                 e.printStackTrace();
