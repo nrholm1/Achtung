@@ -12,9 +12,18 @@ public class Client extends Thread {
     int currentInput;
 
     public Client(Socket _socket) throws IOException {
+        System.out.println("Creating Client");
+
         socketToServer = _socket;
-        inputStream = new ObjectInputStream(socketToServer.getInputStream());
+        System.out.println("socket initialized");
+
         outStream = new ObjectOutputStream(socketToServer.getOutputStream());
+        System.out.println("output stream initialized");
+
+        inputStream = new ObjectInputStream(socketToServer.getInputStream());
+        System.out.println("input stream initialized");
+
+        System.out.println("Client created");
     }
 
     @Override
@@ -37,6 +46,7 @@ public class Client extends Thread {
     }
 
     public void writeCurrentInput(int input) throws IOException {
+        System.out.println("Writing object: " + input);
         outStream.writeObject(input);
     }
 

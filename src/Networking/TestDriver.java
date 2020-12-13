@@ -44,6 +44,8 @@ public class TestDriver {
         Socket socketToServer = new Socket("localhost", 5050);
         Client client = new Client(socketToServer);
 
+        client.run();
+
         System.exit(0);
     }
 
