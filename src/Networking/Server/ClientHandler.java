@@ -25,9 +25,11 @@ public class ClientHandler extends Thread {
     public void run() {
         while (true) {
             try {
-                System.out.println("hello");
                 Object o = inputStream.readObject();
-                System.out.println("Read object: " + o);
+                String translation = "null";
+                if ((int)o != 0)
+                    translation = (int) o == 1 ? "left" : "right";
+                System.out.println("CLIENTHANDLER | Read object: " + o + " = " + translation);
 
                 // temp
                 Payload payload = TestDriver.createRandomPayload();

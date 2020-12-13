@@ -35,7 +35,7 @@ public class Client extends Thread {
 
                 writeCurrentInput(currentInput);
                 Object o = readPayload();
-                System.out.println("Read object: " + o);
+                System.out.println("CLIENT | Read object: " + o);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -46,7 +46,6 @@ public class Client extends Thread {
     }
 
     public void writeCurrentInput(int input) throws IOException {
-        System.out.println("Writing object: " + input);
         outStream.writeObject(input);
     }
 
