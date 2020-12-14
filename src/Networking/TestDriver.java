@@ -1,6 +1,7 @@
 package Networking;
 
 import Networking.Client.Client;
+import Networking.Server.CommonRuntime;
 import Networking.Server.SocketListener;
 import Networking.Utils.Payload;
 import Networking.Utils.PayloadBuilder;
@@ -18,7 +19,9 @@ public class TestDriver {
                 .create();
         System.out.println(payload);
 
-        testListenerTimeout();
+//        testListenerTimeout();
+        testCommonRuntime();
+
     }
 
     public static Payload createRandomPayload() {
@@ -35,6 +38,11 @@ public class TestDriver {
         return positions;
     }
 
+    public static void testCommonRuntime() throws IOException {
+        CommonRuntime runtime = new CommonRuntime();
+    }
+
+    // TODO: not implemented yet!
     public static void testListenerTimeout() throws IOException, InterruptedException {
         SocketListener listener = new SocketListener(5050);
         listener.start();
