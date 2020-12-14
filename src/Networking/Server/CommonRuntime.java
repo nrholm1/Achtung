@@ -1,5 +1,7 @@
 package Networking.Server;
 
+import Networking.Utils.Payload;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -57,7 +59,15 @@ public class CommonRuntime extends Thread {
             }
 
             // 2. send input to StateRenderer
+
             // 3. receive computed state result from StateRenderer
+            // StateRenderer returns Payload: (
+            //    HashMap<Integer, double[]> positions;
+            //    int gameState;
+            //    )
+            Payload payloadForClients = StateRenderer.ComputeState(playerInputs);
+
+
 
             // 4. send new state to all clients
         }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Payload implements Serializable {
-    // positions = {playerId: [x,y]}
+    // positions = {playerId/PORT: [x,y]}
     // gameState = 0, 1, 2 (in progress, game over, you won)
 
     HashMap<Integer, double[]> positions;
