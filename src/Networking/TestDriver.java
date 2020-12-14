@@ -58,7 +58,7 @@ public class TestDriver {
             int delay = (int) (Math.random() * maxDelay);
             (new Thread(() -> {
                 try {
-                    startClientWithPort(port, delay);
+                    startClientWithPort(port, delay).start();
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }

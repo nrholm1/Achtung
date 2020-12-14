@@ -58,6 +58,7 @@ public class CommonRuntime extends Thread {
                 playerInputs.put(port,
                         clientHandlers.get(port)
                                       .getCurrentInput());
+//                System.out.println("COMMONRUNTIME | Input received from port {" + port + "}");
             }
 
             // 2. send input to StateRenderer
@@ -71,6 +72,7 @@ public class CommonRuntime extends Thread {
             for(int port : clientHandlers.keySet()) {
                 clientHandlers.get(port)
                               .setNextPayload(payloadForClients);
+//                System.out.println("COMMONRUNTIME | Payload set for port {" + port + "}");
             }
 
 

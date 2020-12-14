@@ -32,13 +32,16 @@ public class ClientHandler extends Thread {
     @Override
     public void run() {
         while (true) {
+            System.out.println("CLIENTHANDLER | loop");
             try {
-                Object obj = inputStream.readObject();
-                String translation = "null";
-                if ((int)obj != 0)
-                    translation = (int) obj == 1 ? "left" : "right";
-                currentInput = (int)obj;
-                System.out.println("CLIENTHANDLER | Read object: " + obj + " = " + translation);
+                if (inputStream.available() != 0) {
+                    int playerInput = (int) inputStream.readObject();
+                    String translation = "null";
+                    if (playerInput != 0)
+                        translation = playerInput == 1 ? "left" : "right";
+                    currentInput = playerInput;
+                    System.out.println("CLIENTHANDLER | Read object: " + playerInput + " = " + translation);
+                }
 
                 // temp
                 if (nextPayload == null)
@@ -48,7 +51,7 @@ public class ClientHandler extends Thread {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            break;
+//            break;
         }
     }
 
