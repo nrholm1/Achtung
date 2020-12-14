@@ -47,6 +47,14 @@ public class CommonRuntime extends Thread {
             // main server loop
 
             // 1. retrieve input from all clients
+            // store playerInputs for StateRenderer
+            // <PORT, input>
+            HashMap<Integer, Integer> playerInputs = new HashMap<Integer, Integer>();
+            for(int port : clientHandlers.keySet()) {
+                playerInputs.put(port,
+                        clientHandlers.get(port)
+                                      .getCurrentInput());
+            }
 
             // 2. send input to StateRenderer
             // 3. receive computed state result from StateRenderer

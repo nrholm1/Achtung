@@ -14,6 +14,9 @@ public class ClientHandler extends Thread {
     ObjectInputStream inputStream;
     ObjectOutputStream outStream;
 
+    // stores current input (from player: 0,1,2 -> null,left,right)
+    int currentInput;
+
     // runtime context
     CommonRuntime runtime;
 
@@ -27,11 +30,12 @@ public class ClientHandler extends Thread {
     public void run() {
         while (true) {
             try {
-                Object o = inputStream.readObject();
+                Object obj = inputStream.readObject();
                 String translation = "null";
-                if ((int)o != 0)
-                    translation = (int) o == 1 ? "left" : "right";
-                System.out.println("CLIENTHANDLER | Read object: " + o + " = " + translation);
+                if ((int)obj != 0)
+                    translation = (int) obj == 1 ? "left" : "right";
+                currentInput = (int)obj;
+                System.out.println("CLIENTHANDLER | Read object: " + obj + " = " + translation);
 
                 // temp
                 Payload payload = TestDriver.createRandomPayload();
@@ -44,6 +48,10 @@ public class ClientHandler extends Thread {
             }
 
         }
+    }
+
+    public int getCurrentInput() {
+        return currentInput;
     }
 
     public void addRuntime(CommonRuntime _runtime) {
