@@ -21,7 +21,7 @@ public class TestDriver {
 
 //        testServer();
 //        testListenerTimeout();
-        testCommonRuntime(15);
+        testCommonRuntime(5);
     }
 
     public static Payload createRandomPayload() {
@@ -64,6 +64,8 @@ public class TestDriver {
                 }
             })).start();
         }
+
+        runtime.run();
     }
 
     // TODO: not implemented yet!

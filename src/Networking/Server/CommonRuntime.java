@@ -4,6 +4,7 @@ import Networking.Utils.Payload;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CommonRuntime extends Thread {
     // interface with StateRenderer
@@ -11,14 +12,15 @@ public class CommonRuntime extends Thread {
     // listen for new connections
 
     // store connections to client and interface with I/O data streams
+    // Concurrent version to avoid concurrent modification exception
     // <port no., ClientHandler>
-    HashMap<Integer, ClientHandler> clientHandlers;
+    ConcurrentHashMap<Integer, ClientHandler> clientHandlers;
 
     // predefined ports - allows 4 concurrent connections currently
     final int[] PORTS = {5050, 5051, 5052, 5053};
 
     public CommonRuntime() throws IOException {
-        clientHandlers = new HashMap<Integer, ClientHandler>();
+        clientHandlers = new ConcurrentHashMap<Integer, ClientHandler>();
 
         while(true) {
             // create socket listeners and add resulting clienthandlers to hashmap

@@ -45,12 +45,10 @@ public class ClientHandler extends Thread {
                     nextPayload = TestDriver.createRandomPayload();
                 outStream.writeObject(nextPayload);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
+            break;
         }
     }
 
