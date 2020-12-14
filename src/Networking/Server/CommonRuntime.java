@@ -66,7 +66,10 @@ public class CommonRuntime extends Thread {
             //    int gameState;
             //    )
             Payload payloadForClients = StateRenderer.ComputeState(playerInputs);
-
+            for(int port : clientHandlers.keySet()) {
+                clientHandlers.get(port)
+                              .setNextPayload(payloadForClients);
+            }
 
 
             // 4. send new state to all clients

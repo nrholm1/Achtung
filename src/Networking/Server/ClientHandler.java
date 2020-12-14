@@ -17,6 +17,9 @@ public class ClientHandler extends Thread {
     // stores current input (from player: 0,1,2 -> null,left,right)
     int currentInput;
 
+    // next Payload to be sent to client
+    Payload nextPayload;
+
     // runtime context
     CommonRuntime runtime;
 
@@ -38,8 +41,9 @@ public class ClientHandler extends Thread {
                 System.out.println("CLIENTHANDLER | Read object: " + obj + " = " + translation);
 
                 // temp
-                Payload payload = TestDriver.createRandomPayload();
-                outStream.writeObject(payload);
+                if (nextPayload == null)
+                    nextPayload = TestDriver.createRandomPayload();
+                outStream.writeObject(nextPayload);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -52,6 +56,10 @@ public class ClientHandler extends Thread {
 
     public int getCurrentInput() {
         return currentInput;
+    }
+
+    public void setNextPayload(Payload _payload) {
+        nextPayload = _payload;
     }
 
     public void addRuntime(CommonRuntime _runtime) {
