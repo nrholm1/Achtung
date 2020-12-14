@@ -5,6 +5,7 @@ import Networking.Server.CommonRuntime;
 import Networking.Server.SocketListener;
 import Networking.Utils.Payload;
 import Networking.Utils.PayloadBuilder;
+import javafx.concurrent.Task;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -43,10 +44,55 @@ public class TestDriver {
         return new Client(socketToServer);
     }
 
-    public static void testCommonRuntime() throws IOException {
+    // delay creation of client with a given amount of seconds
+    public static Client startClientWithPort(int _port, int delay) throws IOException, InterruptedException {
+        Thread.sleep(delay * 1000);
+        Socket socketToServer = new Socket("localhost", _port);
+        return new Client(socketToServer);
+    }
+
+    public static void testCommonRuntime() throws IOException, InterruptedException {
         CommonRuntime runtime = new CommonRuntime();
-        startClientWithPort(5050);
-        startClientWithPort(5053);
+
+        (new Thread() {
+            public void run() {
+                try {
+                    startClientWithPort(5050);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        (new Thread() {
+            public void run() {
+                try {
+                    startClientWithPort(5051, 5);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        (new Thread() {
+            public void run() {
+                try {
+                    startClientWithPort(5052, 2);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        (new Thread() {
+            public void run() {
+                try {
+                    startClientWithPort(5053);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     // TODO: not implemented yet!
