@@ -46,7 +46,6 @@ public class CommonRuntime extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
             // main server loop
 
@@ -74,7 +73,6 @@ public class CommonRuntime extends Thread {
                               .setNextPayload(payloadForClients);
                 System.out.println("COMMONRUNTIME | Payload set for port {" + port + "}");
             }
-
             // 4. send new state to all clients
         }
     }
