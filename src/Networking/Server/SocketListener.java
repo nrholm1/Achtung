@@ -26,6 +26,7 @@ public class SocketListener extends Thread {
 
     @Override
     public void run() {
+        // TODO: add timeout condition -> perhaps timestamp field for start listening and check for each run of loop
         while (true) {
             try {
                 final Socket socketToClient = socket.accept();
