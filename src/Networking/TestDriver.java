@@ -5,7 +5,6 @@ import Networking.Server.CommonRuntime;
 import Networking.Server.SocketListener;
 import Networking.Utils.Payload;
 import Networking.Utils.PayloadBuilder;
-import javafx.concurrent.Task;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -22,7 +21,7 @@ public class TestDriver {
 
 //        testServer();
 //        testListenerTimeout();
-        testCommonRuntime();
+        testCommonRuntime(15);
     }
 
     public static Payload createRandomPayload() {
@@ -57,15 +56,13 @@ public class TestDriver {
         // maxDelay should be set according to testing timeout condition
         for (int port : new int[]{5050, 5051, 5052, 5053}) {
             int delay = (int) (Math.random() * maxDelay);
-            (new Thread() {
-                public void run() {
-                    try {
-                        startClientWithPort(port, delay);
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            (new Thread(() -> {
+                try {
+                    startClientWithPort(port, delay);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }).start();
+            })).start();
         }
     }
 
