@@ -21,8 +21,7 @@ public class TestDriver {
 
 //        testServer();
 //        testListenerTimeout();
-//        testCommonRuntime();
-
+        testCommonRuntime();
     }
 
     public static Payload createRandomPayload() {
@@ -46,6 +45,8 @@ public class TestDriver {
 
     public static void testCommonRuntime() throws IOException {
         CommonRuntime runtime = new CommonRuntime();
+        startClientWithPort(5050);
+        startClientWithPort(5053);
     }
 
     // TODO: not implemented yet!

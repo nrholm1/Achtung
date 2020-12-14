@@ -32,6 +32,7 @@ public class SocketListener extends Thread {
                 final Socket socketToClient = socket.accept();
                 ClientHandler clientHandler = new ClientHandler(socketToClient);
                 clientHandler.start();
+                System.out.println("ClientHandler for port {" + PORT + "} started");
 
                 if (runtime != null) {
                     runtime.addClientHandler(PORT, clientHandler);
