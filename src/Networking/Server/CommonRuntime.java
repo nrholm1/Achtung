@@ -24,6 +24,7 @@ public class CommonRuntime {
                 if (!clientHandlers.containsKey(port)) {
                     SocketListener listener = new SocketListener(port);
                     listener.setRuntimePointer(this);
+                    listener.start();
                 }
             }
             break;

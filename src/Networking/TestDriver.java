@@ -35,6 +35,11 @@ public class TestDriver {
         return positions;
     }
 
+    public static void testListenerTimeout() throws IOException {
+        SocketListener listener = new SocketListener(5050);
+        listener.start();
+    }
+
     public static void testServer() throws IOException {
         SocketListener listener = new SocketListener(5050);
         listener.start();
