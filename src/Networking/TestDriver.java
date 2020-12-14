@@ -51,48 +51,22 @@ public class TestDriver {
         return new Client(socketToServer);
     }
 
-    public static void testCommonRuntime() throws IOException, InterruptedException {
+    public static void testCommonRuntime(int maxDelay) throws IOException, InterruptedException {
         CommonRuntime runtime = new CommonRuntime();
 
-        (new Thread() {
-            public void run() {
-                try {
-                    startClientWithPort(5050);
-                } catch (IOException e) {
-                    e.printStackTrace();
+        // maxDelay should be set according to testing timeout condition
+        for (int port : new int[]{5050, 5051, 5052, 5053}) {
+            int delay = (int) (Math.random() * maxDelay);
+            (new Thread() {
+                public void run() {
+                    try {
+                        startClientWithPort(port, delay);
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        }).start();
-
-        (new Thread() {
-            public void run() {
-                try {
-                    startClientWithPort(5051, 5);
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        (new Thread() {
-            public void run() {
-                try {
-                    startClientWithPort(5052, 2);
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        (new Thread() {
-            public void run() {
-                try {
-                    startClientWithPort(5053);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+            }).start();
+        }
     }
 
     // TODO: not implemented yet!
