@@ -19,8 +19,9 @@ public class TestDriver {
                 .create();
         System.out.println(payload);
 
+//        testServer();
 //        testListenerTimeout();
-        testCommonRuntime();
+//        testCommonRuntime();
 
     }
 
@@ -38,6 +39,11 @@ public class TestDriver {
         return positions;
     }
 
+    public static Client startClientWithPort(int _port) throws IOException {
+        Socket socketToServer = new Socket("localhost", _port);
+        return new Client(socketToServer);
+    }
+
     public static void testCommonRuntime() throws IOException {
         CommonRuntime runtime = new CommonRuntime();
     }
@@ -52,8 +58,7 @@ public class TestDriver {
         SocketListener listener = new SocketListener(5050);
         listener.start();
 
-        Socket socketToServer = new Socket("localhost", 5050);
-        Client client = new Client(socketToServer);
+        Client client = startClientWithPort(5050);
 
         client.run();
 
