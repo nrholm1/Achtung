@@ -3,7 +3,7 @@ package Networking.Server;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class CommonRuntime {
+public class CommonRuntime extends Thread {
     // interface with StateRenderer
     // create and manage sockets for communicating with clients
     // listen for new connections
@@ -38,5 +38,20 @@ public class CommonRuntime {
             clientHandlers.put(port, clientHandler);
         else
             System.out.println("ERROR: clientHandlers not initialized yet");
+    }
+
+    @Override
+    public void run() {
+
+        while (true) {
+            // main server loop
+
+            // 1. retrieve input from all clients
+
+            // 2. send input to StateRenderer
+            // 3. receive computed state result from StateRenderer
+
+            // 4. send new state to all clients
+        }
     }
 }

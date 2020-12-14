@@ -18,7 +18,7 @@ public class TestDriver {
                 .create();
         System.out.println(payload);
 
-        testServer();
+        testListenerTimeout();
     }
 
     public static Payload createRandomPayload() {
@@ -35,7 +35,7 @@ public class TestDriver {
         return positions;
     }
 
-    public static void testListenerTimeout() throws IOException {
+    public static void testListenerTimeout() throws IOException, InterruptedException {
         SocketListener listener = new SocketListener(5050);
         listener.start();
     }
