@@ -32,7 +32,6 @@ public class ClientHandler extends Thread {
     @Override
     public void run() {
         while (true) {
-            System.out.println("CLIENTHANDLER | loop");
             try {
 //                if (inputStream.available() != 0) {
                     int playerInput = (int) inputStream.readObject();
@@ -52,6 +51,7 @@ public class ClientHandler extends Thread {
                 e.printStackTrace();
             }
 //            break;
+            // TODO: probably a tick speed should be set here
         }
     }
 

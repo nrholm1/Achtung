@@ -29,26 +29,21 @@ public class Client extends Thread {
     @Override
     public void run() {
         while(true) {
-            System.out.println("CLIENT | loop");
             try {
                 // temp
                 currentInput = (int) (Math.random() * 3);
 
-//                Object o = null;
-//                if (inputStream.available() != 0)
-//                    o = readPayload();
                 writeCurrentInput(currentInput);
                 Object o = readPayload();
                 System.out.println("CLIENT | Read object: " + o);
 
-                // temp
-//                break;
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
+            // TODO: probably a tick speed should be set here
         }
     }
 
