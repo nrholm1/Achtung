@@ -34,10 +34,11 @@ public class Client extends Thread {
                 // temp
                 currentInput = (int) (Math.random() * 3);
 
-                Object o = null;
-                if (inputStream.available() != 0)
-                    o = readPayload();
+//                Object o = null;
+//                if (inputStream.available() != 0)
+//                    o = readPayload();
                 writeCurrentInput(currentInput);
+                Object o = readPayload();
                 System.out.println("CLIENT | Read object: " + o);
 
                 // temp

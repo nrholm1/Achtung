@@ -34,14 +34,14 @@ public class ClientHandler extends Thread {
         while (true) {
             System.out.println("CLIENTHANDLER | loop");
             try {
-                if (inputStream.available() != 0) {
+//                if (inputStream.available() != 0) {
                     int playerInput = (int) inputStream.readObject();
                     String translation = "null";
                     if (playerInput != 0)
                         translation = playerInput == 1 ? "left" : "right";
                     currentInput = playerInput;
                     System.out.println("CLIENTHANDLER | Read object: " + playerInput + " = " + translation);
-                }
+//                }
 
                 // temp
                 if (nextPayload == null)
