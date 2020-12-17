@@ -46,7 +46,7 @@ public class GameWindowController implements IController {
 
 
         if (this.scene == null)
-            this.scene = new Scene(this.root, 800, 800);
+            this.scene = new Scene(this.root, 1150, 1002);
 
         initPlayerInputListener();
 
@@ -62,10 +62,10 @@ public class GameWindowController implements IController {
 
     public void initGrid() {
         this.grid = new GridPane();
-        this.grid.setAlignment(Pos.CENTER);
-        this.grid.setHgap(0);
+        this.grid.setAlignment(Pos.CENTER_LEFT);
+        this.grid.setHgap(1);
         this.grid.setVgap(1);
-        this.grid.setPadding(new Insets(25, 25, 25, 25));
+        this.grid.setPadding(new Insets(25, 25, 25, 1));
     }
 
     public void createGridElements() {
@@ -77,7 +77,7 @@ public class GameWindowController implements IController {
 
     public void addGridElements() {
         this.grid.add(this.canvas, 0, 0);
-        this.grid.add(this.hbBtn, 0,  10);
+        this.grid.add(this.hbBtn, 2,  0);
     }
 
     public void initChangeSceneButton() {
@@ -91,7 +91,7 @@ public class GameWindowController implements IController {
     }
 
     public void initCanvas() {
-        this.canvas = new Canvas(800,750);
+        this.canvas = new Canvas(1000,1000);
     }
 
     public void initGraphics() {

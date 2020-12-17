@@ -45,7 +45,7 @@ public class MenuController implements IController {
         nodes.add(createGrid());
 
         if (this.scene == null)
-            this.scene = new Scene(this.root, 800, 800);
+            this.scene = new Scene(this.root, 1000, 1000);
         return this.scene;
     }
 
