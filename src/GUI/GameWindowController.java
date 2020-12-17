@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,18 +14,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 public class GameWindowController implements IController {
     Button changeSceneBtn;
     HBox hbBtn;
 
-    Label username;
-    Label ipTarget;
-    TextField usernameField;
-    TextField ipTargetField;
-
     GridPane grid;
+
+    Canvas canvas;
 
     Scene scene;
     StackPane root;
@@ -57,34 +57,20 @@ public class GameWindowController implements IController {
     public void initGrid() {
         this.grid = new GridPane();
         this.grid.setAlignment(Pos.CENTER);
-        this.grid.setHgap(10);
-        this.grid.setVgap(10);
+        this.grid.setHgap(0);
+        this.grid.setVgap(1);
         this.grid.setPadding(new Insets(25, 25, 25, 25));
     }
 
     public void createGridElements() {
-        initFormLabels();
-        initFormFields();
         initChangeSceneButton();
         initButtonContainer();
+        initCanvas();
     }
 
     public void addGridElements() {
-        this.grid.add(this.username, 0, 1);
-        this.grid.add(this.usernameField, 0,2);
-        this.grid.add(this.ipTarget, 0, 3);
-        this.grid.add(this.ipTargetField, 0,4);
-        this.grid.add(this.hbBtn, 0, 5);
-    }
-
-    public void initFormLabels() {
-        this.username = new Label("Le");
-        this.ipTarget = new Label("Monkeyface");
-    }
-
-    public void initFormFields() {
-        this.usernameField = new TextField();
-        this.ipTargetField = new TextField();
+        this.grid.add(this.canvas, 0, 0);
+        this.grid.add(this.hbBtn, 0,  10);
     }
 
     public void initChangeSceneButton() {
@@ -95,6 +81,20 @@ public class GameWindowController implements IController {
                 Main.changeScene(menuController.createScene());
             }
         });
+    }
+
+    public void initCanvas() {
+        this.canvas = new Canvas(800,750);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillOval(-500, -500, 2000, 2000);
+    }
+
+    public void initPlayerInputListener() {
+        // add handler for player input
+        // scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+        //      // send playerInput to client if A or D
+        // });
     }
 
     public void initButtonContainer() {
