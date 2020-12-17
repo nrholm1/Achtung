@@ -5,7 +5,6 @@ public class Vec2D {
     private int angle;
 
     public void setAngle(int a) {
-        System.out.println(a);
         angle = a;
     }
 
@@ -25,10 +24,11 @@ public class Vec2D {
     }
 
     public Vec2D removePrecision() {
-        coord.v1 = (double) ((int) coord.v1);
-        coord.v2 = (double) ((int) coord.v2);
+        coord.v1 = (int) coord.v1;
+        coord.v2 = (int) coord.v2;
         return this;
     }
+
     public Vec2D(int Angle) {
         setAngle(Angle);
         coord = new Coord();

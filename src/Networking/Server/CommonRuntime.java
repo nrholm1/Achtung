@@ -28,6 +28,7 @@ public class CommonRuntime extends Thread {
                 if (!clientHandlers.containsKey(port)) {
                     SocketListener listener = new SocketListener(port);
                     listener.setRuntimePointer(this);
+                    StateRenderer.addPlayer(port, listener.createPlayerKurwe());
                     listener.start();
                 }
             }

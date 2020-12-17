@@ -3,14 +3,14 @@ package Game.PlayerObjects;
 import Game.GameConstants;
 
 public class Kurwe {
-    private int id; // index in kurwes array
+    private int port;
     private Vec2D positionVec;
     private Vec2D moveVec;
     private int colorId;
     public Coord[] lastVisited;
 
-    public void setPlayerId(int Id) { id = Id; }
-    public int getPlayerId() { return id; }
+    public void setPlayerId(int Id) { port = Id; }
+    public int getPlayerId() { return port; }
 
     public int getColorId() { return colorId; }
 
