@@ -1,9 +1,11 @@
 package GUI;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -40,7 +42,7 @@ public class GameWindowController implements IController {
     }
 
     public Scene createScene() {
-        var nodes = this.root.getChildren();
+        ObservableList<Node> nodes = this.root.getChildren();
         nodes.removeAll();
         nodes.add(createGrid());
 
@@ -82,12 +84,7 @@ public class GameWindowController implements IController {
 
     public void initChangeSceneButton() {
         this.changeSceneBtn = new Button("Change Scene");
-        this.changeSceneBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Main.changeScene(menuController.createScene());
-            }
-        });
+        this.changeSceneBtn.setOnAction(actionEvent -> Main.changeScene(menuController.createScene()));
     }
 
     public void initCanvas() {
