@@ -12,7 +12,7 @@ Overview of the project structure:
 │   │   └── Vec2D
 │   ├── GameConstants
 │   └── GameLogic
-└── Networking
+├── Networking
 │   ├── TestDriver
 │   ├── Client
 │   │   ├── ServerSocket (?)
