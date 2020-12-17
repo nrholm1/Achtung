@@ -13,5 +13,9 @@ public class Coord {
         v2 = V2;
     }
 
+    public double[] getPositionForRender() {
+        return new double[] {v1, v2};
+    }
+
     public Coord() {}
 }
