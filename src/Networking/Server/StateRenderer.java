@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class StateRenderer {
     // <port, kurwe obj>
     private static HashMap<Integer, Kurwe> players;
+    private static boolean[][] visitedPoints;
 
     public static Kurwe getPlayerById(int port) {
         return players.get(port);
@@ -26,7 +27,7 @@ public class StateRenderer {
     }
 
     public static Payload ComputeState(HashMap<Integer, Integer> playerInputs) {
-
+        GameLogic.moveKurwesAndCollisionDetect(players, visitedPoints);
 
         // temp
         return TestDriver.createRandomPayload();
