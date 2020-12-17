@@ -1,5 +1,6 @@
 package GUI;
 
+import Networking.Client.Client;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,6 +15,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.net.Socket;
+
 public class MenuController implements IController {
     Button changeSceneBtn;
     Button connectBtn;
@@ -22,8 +26,10 @@ public class MenuController implements IController {
 
     Label username;
     Label ipTarget;
+    Label portTarget;
     TextField usernameField;
     TextField ipTargetField;
+    TextField portTargetField;
 
     GridPane grid;
 
@@ -78,18 +84,22 @@ public class MenuController implements IController {
         this.grid.add(this.usernameField, 0,2);
         this.grid.add(this.ipTarget, 0, 3);
         this.grid.add(this.ipTargetField, 0,4);
-        this.grid.add(this.alertText, 0,6);
-        this.grid.add(this.hbBtn, 0, 5);
+        this.grid.add(this.portTarget, 0, 5);
+        this.grid.add(this.portTargetField, 0,6);
+        this.grid.add(this.alertText, 0,8);
+        this.grid.add(this.hbBtn, 0, 7);
     }
 
     public void initFormLabels() {
         this.username = new Label("Username");
         this.ipTarget = new Label("Host IP");
+        this.portTarget = new Label("Port");
     }
 
     public void initFormFields() {
         this.usernameField = new TextField();
-        this.ipTargetField = new TextField();
+        this.ipTargetField = new TextField("localhost");
+        this.portTargetField = new TextField("505X");
     }
 
     public void initAlertText() {
@@ -103,6 +113,15 @@ public class MenuController implements IController {
             public void handle(ActionEvent actionEvent) {
                 alertText.setFill(Color.FIREBRICK);
                 alertText.setText("Connect button pressed");
+                Main.setHostIp(ipTargetField.getText());
+                Main.setHostPort(portTargetField.getText());
+
+                try {
+                    Main.startClient();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }

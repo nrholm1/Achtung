@@ -1,8 +1,6 @@
 package GUI;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -10,15 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
+
+import static GUI.Render.renderKurwes;
 
 public class GameWindowController implements IController {
     Button changeSceneBtn;
@@ -52,9 +48,13 @@ public class GameWindowController implements IController {
 
         initPlayerInputListener();
 
-        Render.renderKurwes(graphics, RenderTestDriver.createKurweSet());
+        renderKurwesOnCanvas();
 
         return this.scene;
+    }
+
+    public void renderKurwesOnCanvas() {
+        renderKurwes(graphics, RenderTestDriver.createKurweSet());
     }
 
     public GridPane createGrid() {

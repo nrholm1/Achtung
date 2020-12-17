@@ -21,7 +21,8 @@ public class TestDriver {
 
 //        testServer();
 //        testListenerTimeout();
-        testCommonRuntime(5);
+//        testCommonRuntime(5);
+        startCommonRuntime();
     }
 
     public static Payload createRandomPayload() {
@@ -36,6 +37,11 @@ public class TestDriver {
         for(int x = 0; x < 3; x++)
             positions.put((int)(Math.random() * 7), new double[] {Math.random() * 69, Math.random() * 420});
         return positions;
+    }
+
+    public static void startCommonRuntime() throws IOException {
+        CommonRuntime commonRuntime = new CommonRuntime();
+        commonRuntime.start();
     }
 
     public static Client startClientWithPort(int _port) throws IOException {
@@ -65,7 +71,7 @@ public class TestDriver {
             })).start();
         }
 
-        runtime.run();
+        runtime.start();
     }
 
     // TODO: not implemented yet!
