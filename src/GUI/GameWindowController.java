@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -24,6 +25,7 @@ public class GameWindowController implements IController {
     GridPane grid;
 
     Canvas canvas;
+    GraphicsContext graphics;
 
     Scene scene;
     StackPane root;
@@ -42,8 +44,12 @@ public class GameWindowController implements IController {
         nodes.removeAll();
         nodes.add(createGrid());
 
+
         if (this.scene == null)
             this.scene = new Scene(this.root, 800, 800);
+
+        initPlayerInputListener();
+
         return this.scene;
     }
 
@@ -66,6 +72,7 @@ public class GameWindowController implements IController {
         initChangeSceneButton();
         initButtonContainer();
         initCanvas();
+        initGraphics();
     }
 
     public void addGridElements() {
@@ -85,16 +92,22 @@ public class GameWindowController implements IController {
 
     public void initCanvas() {
         this.canvas = new Canvas(800,750);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.BLACK);
-        gc.fillOval(-500, -500, 2000, 2000);
+    }
+
+    public void initGraphics() {
+        graphics = canvas.getGraphicsContext2D();
+        graphics.setFill(Color.BLACK);
+        graphics.fillOval(-500, -500, 2000, 2000);
     }
 
     public void initPlayerInputListener() {
         // add handler for player input
-        // scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-        //      // send playerInput to client if A or D
-        // });
+         scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+              // send playerInput to client if A or D
+             if (key.getCode().getChar().equals("A") ||
+                 key.getCode().getChar().equals("D"))
+                 System.out.print(key.getCode().getChar()); // handleEvent
+         });
     }
 
     public void initButtonContainer() {
