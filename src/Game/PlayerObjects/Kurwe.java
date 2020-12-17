@@ -39,6 +39,9 @@ public class Kurwe {
             GameConstants.usedColors.add(colorId);
         }
 
+        // temp
+        id = (int) (Math.random() * 6);
+
         return id;
     }
 

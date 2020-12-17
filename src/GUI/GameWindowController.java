@@ -52,6 +52,8 @@ public class GameWindowController implements IController {
 
         initPlayerInputListener();
 
+        Render.renderKurwes(graphics, RenderTestDriver.createKurweSet());
+
         return this.scene;
     }
 
