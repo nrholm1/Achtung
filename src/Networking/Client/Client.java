@@ -1,15 +1,30 @@
 package Networking.Client;
 
+import Networking.Utils.Payload;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class Client extends Thread {
     Socket socketToServer;
     ObjectInputStream inputStream;
     ObjectOutputStream outStream;
     int currentInput;
+
+    // payload contents
+    HashMap<Integer, double[]> playerPositions;
+    int gameState;
+
+    public HashMap<Integer, double[]> getPlayerPositionMap() {
+        return playerPositions;
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
 
     public Client(Socket _socket) throws IOException {
         System.out.println("Creating Client");
@@ -34,8 +49,10 @@ public class Client extends Thread {
                 currentInput = (int) (Math.random() * 3);
 
                 writeCurrentInput(currentInput);
-                Object o = readPayload();
-                System.out.println("CLIENT | Read object: " + o);
+                Payload _payload = (Payload) readPayload();
+                this.playerPositions = _payload.getPositions();
+                this.gameState = _payload.getGameState();
+                System.out.println("CLIENT | Read object: " + _payload);
 
             } catch (IOException e) {
                 e.printStackTrace();

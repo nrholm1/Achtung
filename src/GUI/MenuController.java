@@ -132,6 +132,7 @@ public class MenuController implements IController {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Main.changeScene(gwController.createScene());
+                Main.startAnimationTimer();
             }
         });
     }

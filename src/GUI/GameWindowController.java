@@ -1,5 +1,6 @@
 package GUI;
 
+import Game.PlayerObjects.Kurwe;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static GUI.Render.renderKurwes;
 
@@ -42,19 +46,18 @@ public class GameWindowController implements IController {
         nodes.removeAll();
         nodes.add(createGrid());
 
-
         if (this.scene == null)
             this.scene = new Scene(this.root, 1150, 1002);
 
         initPlayerInputListener();
 
-        renderKurwesOnCanvas();
+        renderKurwesOnCanvas(RenderTestDriver.createKurweSet());
 
         return this.scene;
     }
 
-    public void renderKurwesOnCanvas() {
-        renderKurwes(graphics, RenderTestDriver.createKurweSet());
+    public void renderKurwesOnCanvas(Set<Kurwe> kurwes) {
+        renderKurwes(graphics, kurwes);
     }
 
     public GridPane createGrid() {
@@ -95,6 +98,7 @@ public class GameWindowController implements IController {
 
     public void initGraphics() {
         graphics = canvas.getGraphicsContext2D();
+        Main.setGraphics(graphics);
         graphics.setFill(Color.BLACK);
         graphics.fillOval(-500, -500, 2000, 2000);
     }

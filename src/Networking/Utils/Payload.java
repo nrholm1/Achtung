@@ -17,6 +17,13 @@ public class Payload implements Serializable {
         positions.put(id, coord);
     }
 
+    public HashMap<Integer, double[]> getPositions() {
+        return positions;
+    }
+    public int getGameState() {
+        return gameState;
+    }
+
     public void setGameState(int _gameState) {
         gameState = _gameState;
     }
