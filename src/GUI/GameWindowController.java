@@ -50,7 +50,8 @@ public class GameWindowController implements IController {
 
         initPlayerInputListener();
 
-        renderKurwesOnCanvas(RenderTestDriver.createKurweSet());
+//        renderKurwesOnCanvas(RenderTestDriver.createKurweSet());
+        Main.startAnimationTimer();
 
         return this.scene;
     }

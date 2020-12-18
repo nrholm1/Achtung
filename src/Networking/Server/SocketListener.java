@@ -29,13 +29,15 @@ public class SocketListener extends Thread {
             try {
                 final Socket socketToClient = socket.accept();
                 ClientHandler clientHandler = new ClientHandler(socketToClient);
-                clientHandler.start();
-                System.out.println("ClientHandler for port {" + PORT + "} started");
 
                 if (runtime != null) {
                     runtime.addClientHandler(PORT, clientHandler);
                     clientHandler.addRuntime(runtime);
                 }
+
+                clientHandler.start();
+                System.out.println("ClientHandler for port {" + PORT + "} started");
+
                 break;
             } catch (IOException e) {
                 e.printStackTrace();

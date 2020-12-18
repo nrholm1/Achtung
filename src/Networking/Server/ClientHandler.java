@@ -1,5 +1,6 @@
 package Networking.Server;
 
+import Game.PlayerObjects.Kurwe;
 import Networking.TestDriver;
 import Networking.Utils.Payload;
 
@@ -8,7 +9,7 @@ import java.net.Socket;
 
 // thread that manages one socket connection with a client
 public class ClientHandler extends Thread {
-    private Socket socket;
+    private final Socket socket;
     ObjectInputStream inputStream;
     ObjectOutputStream outStream;
 
@@ -27,8 +28,14 @@ public class ClientHandler extends Thread {
         outStream = new ObjectOutputStream(socket.getOutputStream());
     }
 
+    public void registerPlayerToRuntime() {
+        runtime.addPlayer(socket.getLocalPort(), new Kurwe(socket.getLocalPort()));
+    }
+
     @Override
     public void run() {
+        registerPlayerToRuntime();
+
         while (true) {
             try {
                 int playerInput = (int) inputStream.readObject();

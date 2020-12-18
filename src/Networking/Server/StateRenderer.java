@@ -18,13 +18,15 @@ public class StateRenderer {
     }
 
     public static void addPlayer(int port, Kurwe player) {
-        players.put(port,player);
+        players.put(port, player);
     }
 
     public static void handleMultiplayerInput(HashMap<Integer, Integer> inputs) {
-        for (int port : inputs.keySet())
+        for (int port : inputs.keySet()) {
+//            System.out.println(port + ": " + getPlayerById(port));
             GameLogic.handlePlayerInput(getPlayerById(port),
-                                        inputs.get(port));
+                    inputs.get(port));
+        }
     }
 
     public static HashMap<Integer, double[]> getPlayerPositionMap() {

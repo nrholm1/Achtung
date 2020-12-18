@@ -35,15 +35,11 @@ public class CommonRuntime extends Thread {
             break;
         }
 
-        for(int port : clientHandlers.keySet())
-            StateRenderer.addPlayer(port, createPlayerKurwe(port));
-
-
         System.out.println("CommonRuntime started");
     }
 
-    public Kurwe createPlayerKurwe(int _port) {
-        return new Kurwe(_port);
+    public void addPlayer(int port, Kurwe player) {
+        StateRenderer.addPlayer(port, player);
     }
 
     public void addClientHandler(int port, ClientHandler clientHandler) {
