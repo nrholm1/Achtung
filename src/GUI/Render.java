@@ -19,7 +19,7 @@ public class Render {
     public static void renderKurwes(GraphicsContext graphics, Set<Kurwe> kurwes) {
         for(Kurwe kurwe : kurwes) {
             Color color = GameConstants.colors[kurwe.getColorId()];
-            renderKurwe(graphics, kurwe.getPositionVec().coord.getPositionForRender(), color);
+            renderKurwe(graphics, kurwe.getPositionVec().coord.getPositionInDoubles(), color);
         }
     }
 

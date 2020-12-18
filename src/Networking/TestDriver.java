@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 public class TestDriver {
-    public static void main(String args[]) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Payload payload = new PayloadBuilder()
                 .withGameState(0)
                 .withPosition(69, new double[] {420, 32})
@@ -89,7 +89,7 @@ public class TestDriver {
 
         Client client = startClientWithPort(5050);
 
-        client.run();
+        client.start();
 
         System.exit(0);
     }

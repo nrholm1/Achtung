@@ -13,7 +13,7 @@ public class Coord {
         v2 = V2;
     }
 
-    public double[] getPositionForRender() {
+    public double[] getPositionInDoubles() {
         return new double[] {v1, v2};
     }
 
