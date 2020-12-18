@@ -55,6 +55,11 @@ public class ClientHandler extends Thread {
             }
 //            break;
             // TODO: probably a tick speed should be set here
+            try {
+                Thread.sleep(33);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

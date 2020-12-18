@@ -27,7 +27,7 @@ public class Render {
     public static void renderKurwe(GraphicsContext graphics, double[] position, Color color) {
 //        graphics.setFill(color);
         graphics.setFill(Color.CORNFLOWERBLUE);
-        graphics.fillOval(position[0], position[1], 50, 50);
+        graphics.fillOval(position[0], position[1], 5, 5);
         System.out.println(position[0] + ", " + position[1]);
     }
 }

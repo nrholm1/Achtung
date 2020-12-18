@@ -19,6 +19,10 @@ public class Vec2D {
                 .toRadians(this.getAngle()));
     }
 
+    public Vec2D scalarMultiply(double scalar) {
+        return new Vec2D(coord.v1 * scalar, coord.v2 * scalar);
+    }
+
     public Vec2D addVec(Vec2D otherVec) {
         return new Vec2D(coord.add(otherVec.coord));
     }

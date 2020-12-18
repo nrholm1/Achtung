@@ -29,7 +29,7 @@ public class Kurwe {
     }
 
     public void move() {
-        positionVec = positionVec.addVec(moveVec);
+        positionVec = positionVec.addVec(moveVec.scalarMultiply(0.00005));
     }
 
     public int chooseUniqueColor() {
