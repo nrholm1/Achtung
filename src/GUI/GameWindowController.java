@@ -116,6 +116,11 @@ public class GameWindowController implements IController {
                  Main.setCurrentInput(2);
              }
          });
+
+        // reset currentInput on release
+        scene.addEventFilter(KeyEvent.KEY_RELEASED, key -> {
+            Main.setCurrentInput(0);
+        });
     }
 
     public void initButtonContainer() {

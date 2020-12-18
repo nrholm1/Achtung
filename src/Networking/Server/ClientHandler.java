@@ -38,7 +38,7 @@ public class ClientHandler extends Thread {
                 if (playerInput != 0)
                     translation = playerInput == 1 ? "left" : "right";
                 currentInput = playerInput;
-//                System.out.println("CLIENTHANDLER | Read object: " + playerInput + " = " + translation);
+                System.out.println("CLIENTHANDLER | Read object: " + playerInput + " = " + translation);
 
                 // temp
                 if (nextPayload == null)
