@@ -35,7 +35,10 @@ public class TestDriver {
     public static HashMap<Integer,double[]> createRandomPositions() {
         HashMap<Integer, double[]> positions = new HashMap<>();
         for(int x = 0; x < 3; x++)
-            positions.put((int)(Math.random() * 7), new double[] {Math.random() * 1000, Math.random() * 1000});
+            // 6 is amount of colors in color array
+            positions.put((int)(Math.random() * 6),
+                           // canvas is 1000 x 1000
+                           new double[] {Math.random() * 1000, Math.random() * 1000});
         return positions;
     }
 

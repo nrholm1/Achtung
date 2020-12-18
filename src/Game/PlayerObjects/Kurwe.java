@@ -35,12 +35,12 @@ public class Kurwe {
     public int chooseUniqueColor() {
         int id = -1;
         while (!GameConstants.usedColors.contains(colorId)) {
-            id = (int) (Math.random() * 6);
+            id = (int) (Math.random() * 5);
             GameConstants.usedColors.add(colorId);
         }
 
         // temp
-        id = (int) (Math.random() * 6);
+        id = (int) (Math.random() * 5);
 
         return id;
     }

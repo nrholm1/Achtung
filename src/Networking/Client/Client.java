@@ -54,9 +54,7 @@ public class Client extends Thread {
                 this.gameState = _payload.getGameState();
                 System.out.println("CLIENT | Read object: " + _payload);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 

@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class RenderTestDriver {
     public static Set<Kurwe> createKurweSet() {
-        Set<Kurwe> kurwes = new HashSet<Kurwe>();
+        Set<Kurwe> kurwes = new HashSet<>();
 
         for(int i = 1; i <= 4; i++) {
             Kurwe kurwe = new Kurwe(i);
