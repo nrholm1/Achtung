@@ -11,7 +11,8 @@ import java.util.Set;
 public class Render {
     public static void renderKurwes(GraphicsContext graphics, HashMap<Integer, double[]> kurwes) {
         for(int kurwe : kurwes.keySet()) {
-            Color color = GameConstants.colors[kurwe];
+            // minus 5050 because of inconsistency with ID's throughout application
+            Color color = GameConstants.colors[kurwe - 5050];
             renderKurwe(graphics, kurwes.get(kurwe), color);
         }
     }

@@ -1,7 +1,5 @@
 package Networking.Server;
 
-import Game.PlayerObjects.Kurwe;
-
 import javax.net.ServerSocketFactory;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -22,10 +20,6 @@ public class SocketListener extends Thread {
 
     public void setRuntimePointer(CommonRuntime _runtime) {
         runtime = _runtime;
-    }
-
-    public Kurwe createPlayerKurwe() {
-        return new Kurwe(this.PORT);
     }
 
     @Override

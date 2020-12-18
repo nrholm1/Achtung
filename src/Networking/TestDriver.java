@@ -59,7 +59,7 @@ public class TestDriver {
         return new Client(socketToServer);
     }
 
-    public static void testCommonRuntime(int maxDelay) throws IOException, InterruptedException {
+    public static void testCommonRuntime(int maxDelay) throws IOException {
         CommonRuntime runtime = new CommonRuntime();
 
         // maxDelay should be set according to testing timeout condition

@@ -1,5 +1,6 @@
 package Networking.Server;
 
+import Game.PlayerObjects.Kurwe;
 import Networking.Utils.Payload;
 
 import java.io.IOException;
@@ -28,14 +29,21 @@ public class CommonRuntime extends Thread {
                 if (!clientHandlers.containsKey(port)) {
                     SocketListener listener = new SocketListener(port);
                     listener.setRuntimePointer(this);
-                    StateRenderer.addPlayer(port, listener.createPlayerKurwe());
                     listener.start();
                 }
             }
             break;
         }
 
+        for(int port : clientHandlers.keySet())
+            StateRenderer.addPlayer(port, createPlayerKurwe(port));
+
+
         System.out.println("CommonRuntime started");
+    }
+
+    public Kurwe createPlayerKurwe(int _port) {
+        return new Kurwe(_port);
     }
 
     public void addClientHandler(int port, ClientHandler clientHandler) {
@@ -50,7 +58,6 @@ public class CommonRuntime extends Thread {
         while (true) {
             // main server loop
 
-            // 1. retrieve input from all clients
             // store playerInputs for StateRenderer
             // <PORT, input>
             HashMap<Integer, Integer> playerInputs = new HashMap<Integer, Integer>();
@@ -61,20 +68,12 @@ public class CommonRuntime extends Thread {
 //                System.out.println("COMMONRUNTIME | Input received from port {" + port + "}");
             }
 
-            // 2. send input to StateRenderer
-
-            // 3. receive computed state result from StateRenderer
-            // StateRenderer returns Payload: (
-            //    HashMap<Integer, double[]> positions;
-            //    int gameState;
-            //    )
             Payload payloadForClients = StateRenderer.ComputeState(playerInputs);
             for(int port : clientHandlers.keySet()) {
                 clientHandlers.get(port)
                               .setNextPayload(payloadForClients);
 //                System.out.println("COMMONRUNTIME | Payload set for port {" + port + "}");
             }
-            // 4. send new state to all clients
         }
     }
 }

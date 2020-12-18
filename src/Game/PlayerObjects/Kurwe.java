@@ -33,30 +33,25 @@ public class Kurwe {
     }
 
     public int chooseUniqueColor() {
-        int id = -1;
-        while (!GameConstants.usedColors.contains(colorId)) {
-            id = (int) (Math.random() * 5);
-            GameConstants.usedColors.add(colorId);
-        }
-
-        // temp
-        id = (int) (Math.random() * 5);
-
-        return id;
+        return (int) (Math.random() * 5);
     }
 
+    // algorithm could maybe be optimized with LIFO stack/queue (don't remember 😆)
     public void updateLastVisited(int x, int y) {
-        for(int i = 1; i < lastVisited.length; i++) {
-            lastVisited[i] = lastVisited[i - 1];
-        }
+        if (lastVisited.length - 1 >= 0)
+            System.arraycopy(lastVisited,0, lastVisited, 1, lastVisited.length - 1);
         lastVisited[0] = new Coord(x,y);
     }
 
     public boolean isInLastVisited(int x, int y) {
         boolean isIn = false;
-        for (var c : lastVisited)
-            if ((c.v1 == x && c.v2 == y))
-                isIn = true;
+        for (var c : lastVisited) {
+            if (c != null)
+                if ((c.v1 == x && c.v2 == y)) {
+                    isIn = true;
+                    break;
+                }
+        }
         return isIn;
     }
 
