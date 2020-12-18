@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import static GUI.Render.renderKurwes;
@@ -106,10 +105,16 @@ public class GameWindowController implements IController {
     public void initPlayerInputListener() {
         // add handler for player input
          scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+             String inputKey = key.getCode().getChar();
               // send playerInput to client if A or D
-             if (key.getCode().getChar().equals("A") ||
-                 key.getCode().getChar().equals("D"))
-                 System.out.print(key.getCode().getChar()); // handleEvent
+             if (inputKey.equals("A")) {
+                 System.out.print(inputKey); // handleEvent for A -> 1=left
+                 Main.setCurrentInput(1);
+             }
+             if (inputKey.equals("D")) {
+                 System.out.print(inputKey); // handleEvent for D -> 2=right
+                 Main.setCurrentInput(2);
+             }
          });
     }
 

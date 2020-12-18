@@ -84,6 +84,10 @@ public class Main extends Application {
         System.out.println(hostPort);
     }
 
+    public static void setCurrentInput(int _currentInput) {
+        client.setCurrentInput(_currentInput);
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

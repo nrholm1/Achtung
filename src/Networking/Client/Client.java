@@ -45,14 +45,11 @@ public class Client extends Thread {
     public void run() {
         while(true) {
             try {
-                // temp
-                currentInput = (int) (Math.random() * 3);
-
                 writeCurrentInput(currentInput);
                 Payload _payload = (Payload) readPayload();
                 this.playerPositions = _payload.getPositions();
                 this.gameState = _payload.getGameState();
-                System.out.println("CLIENT | Read object: " + _payload);
+//                System.out.println("CLIENT | Read object: " + _payload);
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -68,5 +65,9 @@ public class Client extends Thread {
 
     public Object readPayload() throws IOException, ClassNotFoundException {
         return inputStream.readObject();
+    }
+
+    public void setCurrentInput(int _currentInput) {
+        currentInput = _currentInput;
     }
 }
