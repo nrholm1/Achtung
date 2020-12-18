@@ -58,7 +58,7 @@ public class Main extends Application {
                     Render.renderKurwes(graphics, client.getPlayerPositionMap());
                     return;
                 }
-                if (l - lastTick > 1000000000 / GameConstants.tickSpeed) {
+                if (l - lastTick > 1000000 / GameConstants.tickSpeed) {
                     lastTick = l;
                     Render.renderKurwes(graphics, client.getPlayerPositionMap());
                 }

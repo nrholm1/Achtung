@@ -23,9 +23,7 @@ public class StateRenderer {
 
     public static void handleMultiplayerInput(HashMap<Integer, Integer> inputs) {
         for (int port : inputs.keySet()) {
-//            System.out.println(port + ": " + getPlayerById(port));
-            GameLogic.handlePlayerInput(getPlayerById(port),
-                    inputs.get(port));
+            GameLogic.handlePlayerInput(getPlayerById(port), inputs.get(port));
         }
     }
 

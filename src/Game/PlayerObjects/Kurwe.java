@@ -5,7 +5,7 @@ import Game.GameConstants;
 public class Kurwe {
     private int port;
     private Vec2D positionVec;
-    private Vec2D moveVec;
+    public Vec2D moveVec;
     private int colorId;
     public Coord[] lastVisited;
 
@@ -29,7 +29,7 @@ public class Kurwe {
     }
 
     public void move() {
-        positionVec = positionVec.addVec(moveVec.scalarMultiply(0.00005));
+        positionVec = positionVec.addVec(moveVec.scalarMultiply(GameConstants.movementConstant));
     }
 
     public int chooseUniqueColor() {

@@ -1,5 +1,6 @@
 package Networking.Server;
 
+import Game.GameConstants;
 import Game.PlayerObjects.Kurwe;
 import Networking.TestDriver;
 import Networking.Utils.Payload;
@@ -56,7 +57,7 @@ public class ClientHandler extends Thread {
 //            break;
             // TODO: probably a tick speed should be set here
             try {
-                Thread.sleep(33);
+                Thread.sleep(GameConstants.tickSpeed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -5,8 +5,9 @@ import javafx.scene.paint.Color;
 import java.util.HashSet;
 
 public class GameConstants {
-    public static final int rotSize = 5; // degrees of rotation per tick
-    public static final int tickSpeed = 100; // tick speed
+    public static final double rotSize = 0.0005; // degrees of rotation per tick
+    public static final int tickSpeed = 33; // tick speed
+    public static final double movementConstant = 0.0002;
     public static final Color[] colors = new Color[] {  Color.BLUE,
             Color.RED,
             Color.GREEN,

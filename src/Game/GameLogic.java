@@ -34,9 +34,10 @@ public class GameLogic {
 
     public static void handlePlayerInput(Kurwe player, int input) {
         // 0, 1, 2 -> null, left, right
+//        System.out.println(player.moveVec.getAngle());
         if (input == 0)
             return;
-        // input==2 -> setNewAngle(clockwise = true) -> goes right
-        player.setNewAngle(input == 2);
+        boolean clockwise = input == 1;
+        player.setNewAngle(clockwise);
     }
 }

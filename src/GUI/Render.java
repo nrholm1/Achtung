@@ -28,6 +28,6 @@ public class Render {
 //        graphics.setFill(color);
         graphics.setFill(Color.CORNFLOWERBLUE);
         graphics.fillOval(position[0], position[1], 5, 5);
-        System.out.println(position[0] + ", " + position[1]);
+//        System.out.println(position[0] + ", " + position[1]);
     }
 }

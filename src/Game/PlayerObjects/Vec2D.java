@@ -2,13 +2,13 @@ package Game.PlayerObjects;
 
 public class Vec2D {
     public Coord coord;
-    private int angle;
+    private double angle;
 
-    public void setAngle(int a) {
+    public void setAngle(double a) {
         angle = a;
     }
 
-    public int getAngle() {
+    public double getAngle() {
         return angle;
     }
 
