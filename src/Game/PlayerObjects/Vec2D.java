@@ -27,12 +27,6 @@ public class Vec2D {
         return new Vec2D(coord.add(otherVec.coord));
     }
 
-    public Vec2D removePrecision() {
-        coord.v1 = (int) coord.v1;
-        coord.v2 = (int) coord.v2;
-        return this;
-    }
-
     public Vec2D(int Angle) {
         setAngle(Angle);
         coord = new Coord();
