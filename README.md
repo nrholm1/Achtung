@@ -41,5 +41,16 @@ Overview of the project structure:
 Side by side view of two clients connecting to the same runtime:
 <em><b> note </b></em> lag is caused by recording software on preview 2
 
+PC 1 (HOST and CLIENT):
+
 ![Gif 1](./AchtungGif1.gif?raw=true)
+
+PC 2 (CLIENT):
+
 ![Gif 2](./AchtungGif2.gif?raw=true)
+
+
+## TODO
+- Custom serialization for even quicker transaction speeds
+- Add nicer logic for handling connection loss and thread interruptions
+- Improve collision detection
