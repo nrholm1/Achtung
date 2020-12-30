@@ -32,3 +32,7 @@ Overview of the project structure:
     ├── Render
     └── RenderTestDriver
 ```
+
+## Diagrams of networking platform
+![Client diagram](./ClientDiagram2.png?raw=true)
+![Server diagram](./ServerDiagram2.png?raw=true)
