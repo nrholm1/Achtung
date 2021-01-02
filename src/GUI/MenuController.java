@@ -110,32 +110,26 @@ public class MenuController implements IController {
 
     public void initConnectButton() {
         this.connectBtn = new Button("Connect");
-        this.connectBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                alertText.setFill(Color.FIREBRICK);
-                alertText.setText("Connecting to " + ipTargetField.getText() + ":" + portTargetField.getText());
-                Main.setHostIp(ipTargetField.getText());
-                Main.setHostPort(portTargetField.getText());
+        this.connectBtn.setOnAction(actionEvent -> {
+            alertText.setFill(Color.FIREBRICK);
+            alertText.setText("Connecting to " + ipTargetField.getText() + ":" + portTargetField.getText());
+            Main.setHostIp(ipTargetField.getText());
+            Main.setHostPort(portTargetField.getText());
 
-                try {
-                    Main.startClient();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+            try {
+                Main.startClient();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
         });
     }
 
     public void initChangeSceneButton() {
         this.changeSceneBtn = new Button("Change Scene");
-        this.changeSceneBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Main.changeScene(gwController.createScene());
-                Main.startAnimationTimer();
-            }
+        this.changeSceneBtn.setOnAction(actionEvent -> {
+            Main.changeScene(gwController.createScene());
+            Main.startAnimationTimer();
         });
     }
 
