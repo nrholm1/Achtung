@@ -54,8 +54,7 @@ public class ClientHandler extends Thread {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-//            break;
-            // TODO: probably a tick speed should be set here
+
             try {
                 Thread.sleep(GameConstants.tickSpeed);
             } catch (InterruptedException e) {

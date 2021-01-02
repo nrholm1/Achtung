@@ -56,7 +56,6 @@ public class Client extends Thread {
                 e.printStackTrace();
             }
 
-            // TODO: probably a tick speed should be set here
             try {
                 Thread.sleep(GameConstants.tickSpeed);
             } catch (InterruptedException e) {
